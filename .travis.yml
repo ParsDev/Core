@@ -12,7 +12,7 @@ compiler:
   - gcc
 
 before_install:
-  wget http://download.dre.vanderbilt.edu/previous_versions/ACE-6.0.0.tar.gz
+  - wget http://download.dre.vanderbilt.edu/previous_versions/ACE-6.0.0.tar.gz
   - tar xvzf ACE-6.0.0.tar.gz
   - cd ~/ACE_wrappers/
   - sudo apt-get update -qq

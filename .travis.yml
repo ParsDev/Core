@@ -2,7 +2,6 @@ sudo: required
 dist: trusty
 
 compiler:
-  - clang
   - gcc
 
 language: cpp
@@ -15,14 +14,12 @@ branches:
     - master
 
 before_install:
-  - sudo apt-get -qq install clang-3.7
   - sudo apt-get -qq install libace-6.0.3 libace-dev
   - sudo apt-get -qq install libncurses5-dev
   - sudo apt-get -qq install build-essential autoconf libtool make cmake git-core 
   - sudo apt-get -qq install openssl libssl-dev mysql-server mysql-client libmysqlclient15-dev libmysql++-dev libreadline6-dev zlib1g-dev libbz2-dev
   
 script:
-  - $CXX --version
   - mkdir build
   - cd build
   - cmake ../ -DSCRIPTS=1 -DTOOLS=0

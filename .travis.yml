@@ -12,12 +12,8 @@ compiler:
   - gcc
 
 before_install:
-  - wget http://download.dre.vanderbilt.edu/previous_versions/ACE-6.0.0.tar.gz
-  - tar xvzf ACE-6.0.0.tar.gz
-  - cd ~/ACE_wrappers/
-  - sudo apt-get update -qq
-  - sudo apt-get install clang-3.7
   - sudo apt-get install libace-dev
+  - sudo apt-get install clang-3.7
   - sudo apt-get install libncurses5-dev
   - sudo apt-get install build-essential autoconf libtool make cmake git-core patch wget links zip unzip unrar
   - sudo apt-get install openssl libssl-dev mysql-server mysql-client libmysqlclient15-dev libmysql++-dev libreadline6-dev zlib1g-dev libbz2-dev

@@ -1,6 +1,6 @@
 ## Build Status
 
-~Soon~
+[![3.3.5 Build Status](https://travis-ci.org/ReinsCoreWotlk/Core.svg?branch=master)](https://travis-ci.org/ReinsCoreWotlk/Core)
 
 ## Introduction
 

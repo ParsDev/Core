@@ -598,5 +598,5 @@ public:
 
 void AddSC_account_commandscript()
 {
-	new account_commandscript();
+    new account_commandscript();
 }

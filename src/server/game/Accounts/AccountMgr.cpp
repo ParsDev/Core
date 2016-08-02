@@ -32,8 +32,8 @@ namespace AccountMgr
 		if (utf8length(username) > MAX_ACCOUNT_STR)
 			return AOR_NAME_TOO_LONG;                           // username's too long
 
-		normalizeString(username);
-		normalizeString(password);
+        normalizeString(username);
+        normalizeString(password);
 
 		if (GetId(username))
 			return AOR_NAME_ALREDY_EXIST;                       // username does already exist
@@ -49,8 +49,8 @@ namespace AccountMgr
 
 		LoginDatabase.Execute(stmt);
 
-		return AOR_OK;                                          // everything's fine
-	}
+        return AOR_OK;      // everything's fine
+    }
 
 	AccountOpResult DeleteAccount(uint32 accountId)
 	{
@@ -59,26 +59,26 @@ namespace AccountMgr
 		stmt->setUInt32(0, accountId);
 		PreparedQueryResult result = LoginDatabase.Query(stmt);
 
-		if (!result)
-			return AOR_NAME_NOT_EXIST;
+        if (!result)
+            return AOR_NAME_NOT_EXIST;
 
-		// Obtain accounts characters
-		stmt = CharacterDatabase.GetPreparedStatement(CHAR_SEL_CHARS_BY_ACCOUNT_ID);
+        // Obtain accounts characters
+        stmt = CharacterDatabase.GetPreparedStatement(CHAR_SEL_CHARS_BY_ACCOUNT_ID);
 
 		stmt->setUInt32(0, accountId);
 
 		result = CharacterDatabase.Query(stmt);
 
-		if (result)
-		{
-			do
-			{
-				uint32 guidLow = (*result)[0].GetUInt32();
-				uint64 guid = MAKE_NEW_GUID(guidLow, 0, HIGHGUID_PLAYER);
+        if (result)
+        {
+            do
+            {
+                uint32 guidLow = (*result)[0].GetUInt32();
+                uint64 guid = MAKE_NEW_GUID(guidLow, 0, HIGHGUID_PLAYER);
 
-				// Kick if player is online
-				if (Player* p = ObjectAccessor::FindPlayer(guid))
-				{
+                // Kick if player is online
+                if (Player* p = ObjectAccessor::FindPlayer(guid))
+                {
 					WorldSession* s = p->GetSession();
 					s->KickPlayer();                            // mark session to remove at next session list update
 					s->LogoutPlayer(false);                     // logout player without waiting next session list update
@@ -259,25 +259,25 @@ namespace AccountMgr
 #ifdef _MSC_VER
 #pragma warning(disable: 4996)
 #endif
-		std::transform(&buffer[0], buffer + maxLength, &buffer[0], wcharToUpperOnlyLatin);
+    std::transform(&buffer[0], buffer + maxLength, &buffer[0], wcharToUpperOnlyLatin);
 #ifdef _MSC_VER
 #pragma warning(default: 4996)
 #endif
 
-		return WStrToUtf8(buffer, maxLength, utf8String);
-	}
+        return WStrToUtf8(buffer, maxLength, utf8String);
+    }
 
-	std::string CalculateShaPassHash(std::string const& name, std::string const& password)
-	{
-		SHA1Hash sha;
-		sha.Initialize();
-		sha.UpdateData(name);
-		sha.UpdateData(":");
-		sha.UpdateData(password);
-		sha.Finalize();
+    std::string CalculateShaPassHash(std::string const& name, std::string const& password)
+    {
+        SHA1Hash sha;
+        sha.Initialize();
+        sha.UpdateData(name);
+        sha.UpdateData(":");
+        sha.UpdateData(password);
+        sha.Finalize();
 
-		return ByteArrayToHexStr(sha.GetDigest(), sha.GetLength());
-	}
+        return ByteArrayToHexStr(sha.GetDigest(), sha.GetLength());
+    }
 
 	bool IsPlayerAccount(uint32 gmlevel)
 	{

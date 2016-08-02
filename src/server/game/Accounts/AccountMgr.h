@@ -1,6 +1,6 @@
 /*
- * Copyright (C) 
- * Copyright (C) 
+ * Copyright (C) 2008-2016 TrinityCore <http://www.trinitycore.org/>
+ * Copyright (C) 2005-2009 MaNGOS <http://getmangos.com/>
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -36,6 +36,10 @@ enum AccountOpResult
 
 namespace AccountMgr
 {
+	AccountOpResult CreateAccount(std::string username, std::string password);
+	AccountOpResult DeleteAccount(uint32 accountId);
+	AccountOpResult ChangeUsername(uint32 accountId, std::string newUsername, std::string newPassword);
+	AccountOpResult ChangePassword(uint32 accountId, std::string newPassword);
     bool CheckPassword(uint32 accountId, std::string password);
 
     uint32 GetId(std::string const& username);
